@@ -1,13 +1,14 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import itertools
+import fractions
 
+from fractions import Fraction 
 from numpy import *
 
 px = []
 py = []
 
-all_data = []
 
 def perp( a ) :
     b = empty_like(a)
@@ -122,15 +123,59 @@ for i in range(1,100000):
 
 
 # results
-zero = (pieces[0]/tries) * 100
-one = (pieces[1]/tries) * 100
-two = (pieces[2]/tries) * 100
-three = (pieces[3]/tries) *100
-print("0: "+str(zero) + "number of permutations " +str(len(sequence_0.keys())))
-print("1: "+str(one) + "number of permutations " +str(len(sequence_1.keys())))
-print("2: "+str(two) + "number of permutations " +str(len(sequence_2.keys())))
-print("3: "+str(three) + "number of permutations " +str(len(sequence_3.keys())))
+x = itertools.permutations(['B','C','D','E','F'])
+total_perms  = len(list(x))
 
-total = zero+one+two+three
+zero = round((pieces[0]/tries) * 100, 2)
+one = round((pieces[1]/tries) * 100, 2)
+two = round((pieces[2]/tries) * 100, 2)
+three = round((pieces[3]/tries) *100, 2)
 
-print("total %: "+str(total))
+print("")
+print("ZERO INTERSECTIONS (4 PIECES)")
+print("-----------------------------")
+print(", ".join(sequence_0.keys()))
+noc0 = len(sequence_0.keys())
+fnoc0 = Fraction(noc0/total_perms).limit_denominator()
+print("")
+print("NO. OF CONFIGURATIONS: "+str(noc0)+" TOTAL: "+str(total_perms))
+print("PROBABILITY: "+str(fnoc0))
+print("SIMULATION P(): "+str(zero)+"%")
+print("-----------------------------")
+
+print("ONE INTERSECTIONS (5 PIECES)")
+print("-----------------------------")
+print(", ".join(sequence_1.keys()))
+noc1 = len(sequence_1.keys())
+fnoc1 = Fraction(noc1/total_perms).limit_denominator()
+print("")
+print("NO. OF CONFIGURATIONS: "+str(noc1)+" TOTAL: "+str(total_perms))
+print("PROBABILITY: "+str(fnoc1))
+print("SIMULATION P(): "+str(one)+"%")
+print("-----------------------------")
+
+print("TWO INTERSECTIONS (6 PIECES)")
+print("-----------------------------")
+print(", ".join(sequence_2.keys()))
+noc2 = len(sequence_2.keys())
+fnoc2 = Fraction(noc2/total_perms).limit_denominator()
+print("")
+print("NO. OF CONFIGURATIONS: "+str(noc2)+" TOTAL: "+str(total_perms))
+print("PROBABILITY: "+str(fnoc2))
+print("SIMULATION P(): "+str(two)+"%")
+print("-----------------------------")
+
+print("THREE INTERSECTIONS (7 PIECES)")
+print("-----------------------------")
+print(", ".join(sequence_3.keys()))
+noc3 = len(sequence_3.keys())
+fnoc3 = Fraction(noc3/total_perms).limit_denominator()
+print("")
+print("NO. OF CONFIGURATIONS: "+str(noc3)+" TOTAL: "+str(total_perms))
+print("PROBABILITY: "+str(fnoc3))
+print("SIMULATION P(): "+str(three)+"%")
+print("-----------------------------")
+print("")
+
+
+
